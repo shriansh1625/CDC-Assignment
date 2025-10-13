@@ -1,0 +1,18 @@
+Leetcode - 2091. Removing Minimum and Maximum From Array
+Solution - 
+class Solution {
+public:
+    int minimumDeletions(vector<int>& nums) {
+        int n = nums.size();
+        int min_index = min_element(nums.begin(), nums.end()) - nums.begin();
+        int max_index = max_element(nums.begin(), nums.end()) - nums.begin();
+        //strategy 1 - remove both from front
+        int front = max(min_index,max_index)+1;
+        //strategy 2 - remove both from back
+        int back = n - min(min_index, max_index);
+        //strategy 3 - remove one from front and one from back
+        int both = (min(min_index, max_index) + 1) + (n - max(min_index, max_index));
+
+    return min({front, back, both});
+    }
+};
